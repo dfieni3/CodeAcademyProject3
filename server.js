@@ -1,4 +1,5 @@
 // database is let instead of const to allow us to modify it in test.js
+var yaml = require('C:/Projects/Project3/project-3-the-scoop/js-yaml-master/js-yaml-master/lib/js-yaml.js');
 let database = {
   users: {},
   articles: {},
@@ -359,6 +360,16 @@ function downvote(item, username) {
     item.downvotedBy.push(username);
   }
   return item;
+}
+
+function saveDatabase() {
+var yaml = require('write-yaml');
+yaml.sync('.database.yml',database);
+}
+
+function loadDatabase() {
+var read = require('read-yaml');
+return read.sync('.database.yml');
 }
 
 
